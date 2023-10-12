@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(
         WebServer
-        main/main.cpp
         src/main.cpp
 )
 
