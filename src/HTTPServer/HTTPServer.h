@@ -6,8 +6,10 @@
 
 class HTTPServer {
 public:
+    explicit HTTPServer(const int port);
     Router router;
-    void run();
+    int port = 8000;
+    void run() const;
 };
 
 

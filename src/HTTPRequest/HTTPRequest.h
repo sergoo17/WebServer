@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <unordered_map>
+#include <functional>
 
 
 class HTTPRequest {
@@ -15,6 +17,9 @@ public:
     std::string escapeSymbols = "\r\n";
 
     explicit HTTPRequest(const std::string& request);
+
+    std::string getResponse(std::unordered_map<std::string, std::function<std::string(HTTPRequest)>> map);
+
 private:
     void parseRequest(const std::string& request);
     void parseRequestLine(const std::string& request);

@@ -1,4 +1,6 @@
 #include "HTTPRequest.h"
+#include "../Responses/FileResponse/FileResponse.h"
+#include "../Responses/HTMLResponse/HTMLResponse.h"
 
 HTTPRequest::HTTPRequest(const std::string& request) {
     parseRequest(request);
@@ -49,4 +51,17 @@ void HTTPRequest::parseHeadersLines(const std::string& request) {
 
         pos = end + 2;
     }
+}
+
+std::string HTTPRequest::getResponse(std::unordered_map<std::string, std::function<std::string(HTTPRequest)>> routers) {
+    auto found = routers.find(path);
+    std::string response;
+    if (found != routers.end()) {
+        response = routers[path](*this);
+    } else if (path.starts_with("/static/")) {
+        response = FileResponse::build(path);
+    } else {
+        response = HTMLResponse::build("404.html");
+    }
+    return response;
 }

@@ -1,18 +1,18 @@
 #include "HTTPServer/HTTPServer.h"
-#include "Responses/HTTPResponse/HTTPResponse.h"
+#include "Responses/HTMLResponse/HTMLResponse.h"
+#include "Responses/FileResponse/FileResponse.h"
 #include <string>
 
 std::string mainPage(const HTTPRequest& request) {
-    if (request.method == "GET")
-    return Response::build("123", HTTPStatus::OK);
+    return HTMLResponse::build("main.html");
 }
 
 std::string icon(const HTTPRequest& request) {
-    return Response::build("", HTTPStatus::NotFound);
+    return FileResponse::build("/static/favicon/favicon.ico");
 }
 
 int main() {
-    HTTPServer server;
+    HTTPServer server(8000);
     server.router.add_route("/", mainPage);
     server.router.add_route("/favicon.ico", icon);
     server.run();

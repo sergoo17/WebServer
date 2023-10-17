@@ -4,9 +4,13 @@
 
 #include "HTTPServer.h"
 #include "../ClientSocket/ClientSocket.h"
+#include "../Responses/HTMLResponse/HTMLResponse.h"
 
-void HTTPServer::run() {
-    TCPSocket socket(8000);
+HTTPServer::HTTPServer(const int port) : port(port) {
+}
+
+void HTTPServer::run() const {
+    TCPSocket socket(port);
     int serverSocket = socket.createSocket();
 
     while (true) {
@@ -14,13 +18,7 @@ void HTTPServer::run() {
         ClientSocket clientSocket(clientSocketInt);
         std::string stringRequest = clientSocket.read();
         HTTPRequest request(stringRequest);
-
-        auto found = router.routers.find(request.path);
-        if (found != router.routers.end()) {
-            std::string response = router.routers[request.path](request);
-            clientSocket.write(response);
-        } else {
-
-        }
+        std::string response = request.getResponse(router.routers);
+        clientSocket.write(response);
     }
 }

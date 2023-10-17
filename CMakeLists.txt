@@ -28,6 +28,8 @@ add_executable(
         src/Enums/HTTPVersions.h
         src/Enums/HTTPMethods.cpp
         src/Enums/HTTPMethods.h
+        src/Responses/FileResponse/FileResponse.cpp
+        src/Responses/FileResponse/FileResponse.h
 )
 
 if(WIN32)

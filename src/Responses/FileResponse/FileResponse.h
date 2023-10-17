@@ -1,12 +1,14 @@
-#ifndef HTML_RESPONSE_H
-#define HTML_RESPONSE_H
+//
+// Created by sergoo on 17.10.2023.
+//
 
+#ifndef WEBSERVER_FILE_RESPONSE_H
+#define WEBSERVER_FILE_RESPONSE_H
 
-#include <string>
-#include <filesystem>
 #include "../HTTPResponse/HTTPResponse.h"
 
-class HTMLResponse {
+
+class FileResponse {
 public:
     static std::string build(const std::string& content,
                              HTTPStatus statusCode = HTTPStatus::OK,
@@ -14,4 +16,4 @@ public:
 };
 
 
-#endif //HTML_RESPONSE_H
+#endif //WEBSERVER_FILE_RESPONSE_H
