@@ -4,7 +4,7 @@
 #include <string>
 
 std::string mainPage(const HTTPRequest& request) {
-    return HTMLResponse::build("main.html");
+    return HTMLResponse::build("index.html");
 }
 
 std::string icon(const HTTPRequest& request) {
