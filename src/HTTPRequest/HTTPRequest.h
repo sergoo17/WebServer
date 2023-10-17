@@ -15,11 +15,8 @@ public:
     std::string httpProtocol;
     std::map<std::string, std::string> headers;
     std::string escapeSymbols = "\r\n";
-
     explicit HTTPRequest(const std::string& request);
-
-    std::string getResponse(std::unordered_map<std::string, std::function<std::string(HTTPRequest)>> map);
-
+    std::string getResponse(std::unordered_map<std::string, std::function<std::string(HTTPRequest)>> routers);
 private:
     void parseRequest(const std::string& request);
     void parseRequestLine(const std::string& request);

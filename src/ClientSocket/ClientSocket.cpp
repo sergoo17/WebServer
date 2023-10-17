@@ -20,4 +20,3 @@ std::string ClientSocket::read() const {
 void ClientSocket::write(const std::string& response) const {
     send(socket, response.c_str(), static_cast<int>(response.size()), 0);
 }
-

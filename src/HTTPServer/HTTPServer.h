@@ -6,10 +6,13 @@
 
 class HTTPServer {
 public:
-    explicit HTTPServer(const int port);
     Router router;
-    int port = 8000;
+    explicit HTTPServer(int port);
     void run() const;
+    static void handleRequest(int socket,
+                              std::unordered_map<std::string, std::function<std::string(HTTPRequest)>> routers);
+private:
+    int port = 8000;
 };
 
 
