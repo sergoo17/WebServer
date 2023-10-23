@@ -7,6 +7,10 @@ std::string mainPage(const HTTPRequest& request) {
     return HTMLResponse::build("index.html");
 }
 
+std::string game(const HTTPRequest& request) {
+    return HTMLResponse::build("game.html");
+}
+
 std::string icon(const HTTPRequest& request) {
     return FileResponse::build("/static/favicon/favicon.ico");
 }
@@ -15,5 +19,6 @@ int main() {
     HTTPServer server(8000);
     server.router.add_route("/", mainPage);
     server.router.add_route("/favicon.ico", icon);
+    server.router.add_route("/game", game);
     server.run();
 }
