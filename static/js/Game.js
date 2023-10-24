@@ -7663,14 +7663,6 @@ var _glfwMakeContextCurrent = winid => {};
 
 var _glfwPollEvents = () => {};
 
-var _glfwSetKeyCallback = (winid, cbfun) => GLFW.setKeyCallback(winid, cbfun);
-
-var _glfwSetWindowShouldClose = (winid, value) => {
- var win = GLFW.WindowFromId(winid);
- if (!win) return;
- win.shouldClose = value;
-};
-
 var _glfwSwapBuffers = winid => GLFW.swapBuffers(winid);
 
 var _glfwTerminate = () => {
@@ -8131,8 +8123,6 @@ var wasmImports = {
  /** @export */ glfwInit: _glfwInit,
  /** @export */ glfwMakeContextCurrent: _glfwMakeContextCurrent,
  /** @export */ glfwPollEvents: _glfwPollEvents,
- /** @export */ glfwSetKeyCallback: _glfwSetKeyCallback,
- /** @export */ glfwSetWindowShouldClose: _glfwSetWindowShouldClose,
  /** @export */ glfwSwapBuffers: _glfwSwapBuffers,
  /** @export */ glfwTerminate: _glfwTerminate,
  /** @export */ glfwWindowHint: _glfwWindowHint,
